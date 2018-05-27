@@ -21,32 +21,32 @@
 
 
 
-        <link rel="stylesheet" href="assets/css/normalize.css">
-        <link rel="stylesheet" href="assets/css/fonticons.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <link rel="stylesheet" href="../assets/css/normalize.css">
+        <link rel="stylesheet" href="../assets/css/fonticons.css">
+        <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/bootstrap.css">
 
         <!-- For navmenu css -->
-        <link rel="stylesheet" href="assets/css/navmenu.css" />
+        <link rel="stylesheet" href="../assets/css/navmenu.css" />
 
         <!--For Plugins external css-->
-        <link rel="stylesheet" href="assets/css/plugins.css" />
+        <link rel="stylesheet" href="../assets/css/plugins.css" />
 
         <!--Theme custom css -->
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
 
         <!--Theme Responsive css-->
-        <link rel="stylesheet" href="assets/css/responsive.css" />
+        <link rel="stylesheet" href="../assets/css/responsive.css" />
 
         <!--Theme Colors css-->
-        <!--<link rel="stylesheet" href="assets/css/white.css">-->
+        <!--<link rel="stylesheet" href="../assets/css/white.css">-->
 
 
 
         <!--Old browser  JS-->
-        <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="../assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
     </head>
 
@@ -125,20 +125,20 @@
 
 
 
-        <script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="assets/js/vendor/bootstrap.min.js"></script>
+        <script src="../assets/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="../assets/js/vendor/bootstrap.min.js"></script>
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-        <script src="assets/js/jquery.easing.1.3.js"></script>
-        <script src="assets/js/materialize.js"></script>
-        <script src="assets/js/jquery.magnific-popup.js"></script>
-        <script src="http://maps.google.com/maps/api/js"></script>
-        <script src="assets/js/gmaps.min.js"></script>
+        <script src="../assets/js/jquery.easing.1.3.js"></script>
+        <script src="../assets/js/materialize.js"></script>
+        <script src="../assets/js/jquery.magnific-popup.js"></script>
+        <script src="../http://maps.google.com/maps/api/js"></script>
+        <script src="../assets/js/gmaps.min.js"></script>
 
 
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="../assets/js/plugins.js"></script>
+        <script src="../assets/js/main.js"></script>
 
     </body>
 </html>
