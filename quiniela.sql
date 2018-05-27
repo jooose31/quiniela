@@ -39,4 +39,4 @@ CREATE TABLE quiniela(
   primary key(email,idp,idq),
   foreign key(email) references participantes,
   foreign key (idp) references partidos
-)
+);
