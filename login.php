@@ -80,8 +80,62 @@
                         <div class="col-md-12 ">
 
                             <div class="main_home text-center wow fadeInUp" data-wow-duration="700ms">
-                                <h1>PROYECTO FINAL CCV <br />
-                                    QUINIELA</h1>
+
+<?php
+    $user= "postgres";
+    $password = "root";
+    $dbname = "quiniela";
+    $port = "5432";
+    $host = "localhost";
+
+    $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+
+    $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
+
+    //fin de la conexion -------------------------------------------------------------------------
+
+
+    $email=$_POST['email'];
+    $pass=$_POST['pass'];
+    $password = sha1($pass);
+    
+    $query7 = " SELECT *  
+                FROM participantes
+                WHERE email='$email' and pass = '$password' ";
+    $result7 = pg_query($link, $query7) or die('Query failed: ' . pg_last_error());
+    $line = pg_fetch_array($result7);
+
+    $query = " SELECT *  
+                FROM admin
+                WHERE email='$email' and pass = '$pass' ";
+    $result = pg_query($link, $query) or die('Query failed: ' . pg_last_error());
+    $line1 = pg_fetch_array($result);
+  
+
+
+    if($line){
+        session_start();
+      $_SESSION['correo']  = $email;
+      header("location: /quiniela/participante/inicio.php");
+    }elseif ($line1) {
+        session_start();
+      $_SESSION['correo']  = $email;
+      header("location: /quiniela/admin/inicio.php");
+        # code...
+    } else{
+        echo"<h1>Error: <br />
+        Correo o contraseña invalidos</h1>";
+    }
+
+    
+
+
+    //fin de la conexion a la bd------------------------------------------------------------
+    pg_close($link);
+
+?>
+
+                                
                                 <ul class="list-inline">
                                     <li><a href="ingresar.html">Ingresar</a></li>
                                     <li><a href="singup.html">Crear cuenta</a></li>
@@ -91,6 +145,9 @@
                             <div class="scrolldown">
                                 <a href="#about"><i class="fa fa-long-arrow-down"></i></a>
                             </div>
+
+
+
 
                         </div><!-- End of col-md-12 -->
                     </div><!-- End of row -->
