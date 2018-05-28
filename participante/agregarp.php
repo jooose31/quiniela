@@ -62,6 +62,12 @@
                 <h2>Cargando</h2>
                 <div class="loaded hexdots-loader">Loading…</div>
             </div><!-- End off Preloader -->
+
+
+
+
+
+
             </div>
 
 
@@ -75,108 +81,145 @@
 
 
 
-                            <div class="col-md-12 no-padding wow rollIn">
-                                <div class="main_home_area p-t-9 p-x-10">
+                            <div class="col-md-6 no-padding wow rollIn">
+                                <div class="main_home_area p-t-2 p-x-3">
                                     <div class="head_title">
-                                        <h2>Calendario</h2>
+                                        <h2>Agregar Partido</h2>
                                     </div>
+                                    <div class="single_contant_right">
+                                        <form action="agpartido.php" id="formid" method="post">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="lugar" placeholder="Ubicacion" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="datetime-local" class="form-control" name="feho"  required="">
+                                                    </div>
+                                                </div>
 
 
-        <div class="row">
-
-                        <div class="table-responsive">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th><h1>Lugar</h1></th>
-                                <th><h1>Fecha</h1></th>
-                                <th><h1>Local</h1></th>
-                                <th><h1>Vicitante</h1></th>
-                                <th><h1>Goles local</h1></th>
-                                <th><h1>Goles vicitante</h1></th>
-                                <th><h1>Fase</h1></th>
-
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <?php
-                                                            $user= "postgres";
-                                                            $password = "root";
-                                                            $dbname = "quiniela";
-                                                            $port = "5432";
-                                                            $host = "localhost";
-
-                                                            $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
-
-                                                            $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
-
-                                                            //fin de la conexion -------------------------------------------------------------------------
+                                            </div>
 
 
-                                                            // session_start();
-                                                            // $scorreo=$_SESSION['correo'];
-                                                            $query5 = "SELECT *
-                                                            FROM partidos
-                                                            ORDER BY fechahorap";
-                                                            $result5 = pg_query($link, $query5) or die('Query failed: ' . pg_last_error());
+                                  </div>
 
-                                                            while ($line = pg_fetch_array($result5)) {
-                                                              $lugar = $line['lugar'];
-                                                              $fechahora = $line['fechahorap'];
-                                                              $ideu = $line['ideu'];
-                                                              $ided = $line['ided'];
-                                                              $geu = $line['geu'];
-                                                              $ged = $line['ged'];
-                                                              $fase = $line['fase'];
-                                                              $idp = $line['idp'];
+                                  <div class="row">
+                                    <div class="form-group">
+                                    <label class="col-xs-3 control-label">Seleccione un equipo</label>
+                                      <div class="col-xs-5 selectContainer">
+                                        <select class="form-control" name="ideu" require="">
 
 
 
-                                                                echo "<tr>";
+<?php
+    $user= "postgres";
+    $password = "root";
+    $dbname = "quiniela";
+    $port = "5432";
+    $host = "localhost";
 
-                                                                echo "<td><a>$lugar</a></td>";
-                                                                echo "<td><a>$fechahora</a></td>";
-                                                                echo "<td><a>$ideu</a></td>";
-                                                                echo "<td><a>$ided</a></td>";
-                                                                echo "<td><a>$geu</a></td>";
-                                                                echo "<td><a>$ged</a></td>";
-                                                                echo "<td><a>$fase</a></td>";
-                                                                //arreglar este para editar y guardar la quiniela
-                                                                echo "<td><a href="."agresultado.php?partido=$idp". "><span class="."label label-danger".">Quiniela</span> </td>";
+    $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
 
+    $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
 
-                                                                echo "</tr>";
+    //fin de la conexion -------------------------------------------------------------------------
 
+    $query2 = "SELECT ide,pais FROM equipos";
+    $result2 = pg_query($link, $query2);
 
+    while ( $line = pg_fetch_array($result2)){
 
+        echo "<option value='". $line[ide] ."'> ". $line[pais] ."</option>";
 
-                                                            }
-
-
-
-                                                            //fin de la conexion a la bd------------------------------------------------------------
-                                                            pg_close($link);
+  }
 
 
-                                                             ?>
+    //fin de la conexion a la bd------------------------------------------------------------
+    pg_close($link);
+
+?>
+                                            </select>
+                               </div>
+                            </div>
+
+</div>
+
+<div class="row">
 
 
-
-
-
-
-                            </tbody>
-                          </table>
-                        </div>
-                    </div>
-
-
-
-
-
+  <div class="form-group">
+                                    <label class="col-xs-3 control-label">Seleccione un equipo</label>
+                                      <div class="col-xs-5 selectContainer">
+                                        <select class="form-control" name="ided" require="">
 
 
 
+<?php
+    $user= "postgres";
+    $password = "root";
+    $dbname = "quiniela";
+    $port = "5432";
+    $host = "localhost";
+
+    $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+
+    $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
+
+    //fin de la conexion -------------------------------------------------------------------------
+
+    $query = "SELECT ide,pais FROM equipos";
+    $result = pg_query($link, $query);
+
+    while ( $line1 = pg_fetch_array($result)){
+
+        echo "<option value='". $line1[ide] ."'> ". $line1[pais] ."</option>";
+
+  }
+
+
+    //fin de la conexion a la bd------------------------------------------------------------
+    pg_close($link);
+
+?>
+                                            </select>
+                               </div>
+                            </div>
+
+</div>
+
+
+
+
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="fase" placeholder="fase" required="">
+                                                    </div>
+                                                </div>
+
+                                              </div>
+
+
+
+
+                                            <div class="row">
+
+                                                <div class="m-b-2 m-t-2">
+                                                    <input onclick="verifica()" type="submit" value="agregar">
+                                                </div>
+                                            </div>
+
+
+                                        </form>
 
 
 
@@ -185,8 +228,7 @@
 
 
 
-
-
+                                    </div>
                                     <!-- Copyright -->
                                     <div class="row">
                                         <div class="main_footer">

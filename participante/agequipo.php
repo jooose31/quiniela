@@ -95,33 +95,68 @@
 
                             <div class="main_home text-center wow fadeInUp" data-wow-duration="700ms">
 
-                        <?php
-//conexion bd------------------------------------------------------------------------------------
-$user= "postgres";
-$password = "root";
-$dbname = "quiniela";
-$port = "5432";
-$host = "localhost";
+<?php
+    $user= "postgres";
+    $password = "root";
+    $dbname = "quiniela";
+    $port = "5432";
+    $host = "localhost";
 
-$con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+    $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
 
-$link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
+    $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
 
-//fin de la conexion -------------------------------------------------------------------------
-session_start();
-$correoa =$_SESSION['correo'];
-$query = "SELECT nombre
-              FROM administrador
-              WHERE email ='$correoa'";
+    //fin de la conexion -------------------------------------------------------------------------
+
+
+    $pais=$_POST['pais'];
+    $ide=$_POST['ide'];
+    $grupo=$_POST['grupo'];
+    //$imagen=$_POST['bandera'];
+
+    $imagen = $_FILES['bandera']['tmp_name'];
+    
+
+     $data = file_get_contents($imagen);
+     $bandera = pg_escape_bytea($data);
+    // echo"$bandera";
+
+    $query = " SELECT *  
+                FROM equipos
+                WHERE pais='$pais' or ide='$ide' ";
     $result = pg_query($link, $query) or die('Query failed: ' . pg_last_error());
-    $line1 = pg_fetch_array($result);
-    $name = $line1['nombre'];
-echo "<h1>BIENVENIDO <br />
-$name</h1>";
+    $line = pg_fetch_array($result);
 
-//fin de la conexion a la bd------------------------------------------------------------
-pg_close($link);
+    $query1 = " SELECT count(*) AS numero  
+                FROM equipos";
+    $result1 = pg_query($link, $query1) or die('Query failed: ' . pg_last_error());
+    $line1 = pg_fetch_array($result1);
+    $conteo = $line1['numero'];
 
+
+    if ($line) {
+        echo"<h1>Error: <br />
+        El equipo ya existe</h1>";
+    }elseif ($conteo==32) {
+        echo"<h1>Error: <br />
+        los grupos/equipos estan completos, suerte la proxima</h1>";
+    }else {
+    $query2 = "INSERT INTO equipos VALUES ('$ide',0,'$pais','$grupo','{$bandera}',0,0)";
+    $result2 = pg_query($link, $query2) or die('Query failed: ' . pg_last_error());
+    echo"<h1>El equipo ha sido agregado <br />
+        </h1>";
+        
+    }
+
+
+
+
+    
+    
+
+
+    //fin de la conexion a la bd------------------------------------------------------------
+    pg_close($link);
 
 ?>
 
@@ -132,7 +167,7 @@ pg_close($link);
 
                                 <ul class="list-inline">
                                     <li><a  href="agregare.php">Agregar Equipos</a></li>
-                                    <li><a  href="agregarp.php">Agregar partidos</a></li>
+                                    <li><a  href="agpartido.php">Agregar partidos</a></li>
                                     <li><a  href="calendario.php">Calendario</a></li>
                                     <li><a  href="#">Grupos</a></li>
                                     <li><a  href="logout.php">Salir</a></li>

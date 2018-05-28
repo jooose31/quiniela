@@ -95,38 +95,75 @@
 
                             <div class="main_home text-center wow fadeInUp" data-wow-duration="700ms">
 
-                        <?php
-//conexion bd------------------------------------------------------------------------------------
-$user= "postgres";
-$password = "root";
-$dbname = "quiniela";
-$port = "5432";
-$host = "localhost";
+<?php
+    $user= "postgres";
+    $password = "root";
+    $dbname = "quiniela";
+    $port = "5432";
+    $host = "localhost";
 
-$con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+    $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
 
-$link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
+    $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
 
-//fin de la conexion -------------------------------------------------------------------------
-session_start();
-$correoa =$_SESSION['correo'];
-$query = "SELECT nombre
-              FROM administrador
-              WHERE email ='$correoa'";
+    //fin de la conexion -------------------------------------------------------------------------
+
+
+    $lugar=$_POST['lugar'];
+    $fech=$_POST['feho'];
+    $ideu=$_POST['ideu'];
+    $ided=$_POST['ided'];
+    $fase=$_POST['fase'];
+
+    $fecha=explode("T",$fech);
+    $fecharu=$fecha[0];
+    $fechahora=$fecha[0] . " " . $fecha[1];
+
+    $query7 = "SELECT count(*) as suma
+    FROM partidos";
+    $result7 = pg_query($link, $query7) or die('Query failed: ' . pg_last_error());
+    $line7 = pg_fetch_array($result7);
+    $contador = $line7['suma'] +1;
+
+
+
+    $query = "SELECT *
+    FROM partidos
+    WHERE (ided = '$ided' and ideu = '$ideu') or (ideu = '$ided' and ided = '$ideu')";
     $result = pg_query($link, $query) or die('Query failed: ' . pg_last_error());
-    $line1 = pg_fetch_array($result);
-    $name = $line1['nombre'];
-echo "<h1>BIENVENIDO <br />
-$name</h1>";
+    $line = pg_fetch_array($result);
 
-//fin de la conexion a la bd------------------------------------------------------------
-pg_close($link);
 
+    // echo"<h1> $idq  y tambien $fechahor<br />
+    //      </h1>";
+
+    if ($ideu != $ided) {
+        if ($line) {
+            echo"<h1>Error: <br />
+        Partido ya existente</h1>";
+        }else {
+            $query2 = "INSERT INTO partidos VALUES ('$contador','$lugar','$ideu','$ided',0,0,'$fase','$fechahora')";
+            $result2 = pg_query($link, $query2) or die('Query failed: ' . pg_last_error());
+    echo"<h1>El partido ha sido agregado <br />
+        </h1>";
+        }
+
+
+    }
+
+
+
+
+
+
+
+    //fin de la conexion a la bd------------------------------------------------------------
+    pg_close($link);
 
 ?>
 
 
-                                
+
 
 
 
@@ -139,7 +176,7 @@ pg_close($link);
                                 </ul>
                             </div>
 
-                            
+
 
                         </div><!-- End of col-md-12 -->
                     </div><!-- End of row -->

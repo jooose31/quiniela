@@ -62,6 +62,12 @@
                 <h2>Cargando</h2>
                 <div class="loaded hexdots-loader">Loading…</div>
             </div><!-- End off Preloader -->
+
+
+
+
+
+
             </div>
 
 
@@ -75,100 +81,59 @@
 
 
 
-                            <div class="col-md-12 no-padding wow rollIn">
-                                <div class="main_home_area p-t-9 p-x-10">
+                            <div class="col-md-6 no-padding wow rollIn">
+                                <div class="main_home_area p-t-2 p-x-3">
                                     <div class="head_title">
-                                        <h2>Calendario</h2>
+                                        <h2>Agregar equipo</h2>
                                     </div>
+                                    <div class="single_contant_right">
+                                        <form action="agequipo.php" id="formid" method="post" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="pais" placeholder="Pais" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="ide" placeholder="Abreviatura" required="">
+                                                    </div>
+                                                </div>
 
 
-        <div class="row">
+                                            </div>
 
-                        <div class="table-responsive">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th><h1>Lugar</h1></th>
-                                <th><h1>Fecha</h1></th>
-                                <th><h1>Local</h1></th>
-                                <th><h1>Vicitante</h1></th>
-                                <th><h1>Goles local</h1></th>
-                                <th><h1>Goles vicitante</h1></th>
-                                <th><h1>Fase</h1></th>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="grupo" placeholder="Grupo" required="">
+                                                    </div>
+                                                </div>
 
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <?php
-                                                            $user= "postgres";
-                                                            $password = "root";
-                                                            $dbname = "quiniela";
-                                                            $port = "5432";
-                                                            $host = "localhost";
+                                              </div>
 
-                                                            $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="file"  name="bandera"  required="">
+                                                    </div>
+                                                </div>
 
-                                                            $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
-
-                                                            //fin de la conexion -------------------------------------------------------------------------
+                                              </div>
 
 
-                                                            // session_start();
-                                                            // $scorreo=$_SESSION['correo'];
-                                                            $query5 = "SELECT *
-                                                            FROM partidos
-                                                            ORDER BY fechahorap";
-                                                            $result5 = pg_query($link, $query5) or die('Query failed: ' . pg_last_error());
+                                            <div class="row">
 
-                                                            while ($line = pg_fetch_array($result5)) {
-                                                              $lugar = $line['lugar'];
-                                                              $fechahora = $line['fechahorap'];
-                                                              $ideu = $line['ideu'];
-                                                              $ided = $line['ided'];
-                                                              $geu = $line['geu'];
-                                                              $ged = $line['ged'];
-                                                              $fase = $line['fase'];
-                                                              $idp = $line['idp'];
+                                                <div class="m-b-2 m-t-2">
+                                                    <input onclick="verifica()" type="submit" value="agregar">
+                                                </div>
+                                            </div>
 
 
-
-                                                                echo "<tr>";
-
-                                                                echo "<td><a>$lugar</a></td>";
-                                                                echo "<td><a>$fechahora</a></td>";
-                                                                echo "<td><a>$ideu</a></td>";
-                                                                echo "<td><a>$ided</a></td>";
-                                                                echo "<td><a>$geu</a></td>";
-                                                                echo "<td><a>$ged</a></td>";
-                                                                echo "<td><a>$fase</a></td>";
-                                                                //arreglar este para editar y guardar la quiniela
-                                                                echo "<td><a href="."agresultado.php?partido=$idp". "><span class="."label label-danger".">Quiniela</span> </td>";
-
-
-                                                                echo "</tr>";
-
-
-
-
-                                                            }
-
-
-
-                                                            //fin de la conexion a la bd------------------------------------------------------------
-                                                            pg_close($link);
-
-
-                                                             ?>
-
-
-
-
-
-
-                            </tbody>
-                          </table>
-                        </div>
-                    </div>
+                                        </form>
 
 
 
@@ -177,16 +142,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
+                                    </div>
                                     <!-- Copyright -->
                                     <div class="row">
                                         <div class="main_footer">
@@ -244,3 +200,4 @@
 
     </body>
 </html>
+ 
