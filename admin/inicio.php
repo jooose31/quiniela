@@ -132,8 +132,8 @@ pg_close($link);
 
                                 <ul class="list-inline">
                                     <li><a  href="agregare.php">Agregar Equipos</a></li>
-                                    <li><a  href="#">Agregar partidos</a></li>
-                                    <li><a  href="#">Calendario</a></li>
+                                    <li><a  href="agregarp.php">Agregar partidos</a></li>
+                                    <li><a  href="calendario.php">Calendario</a></li>
                                     <li><a  href="#">Grupos</a></li>
                                     <li><a  href="logout.php">Salir</a></li>
                                 </ul>

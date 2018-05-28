@@ -84,14 +84,14 @@
                             <div class="col-md-6 no-padding wow rollIn">
                                 <div class="main_home_area p-t-2 p-x-3">
                                     <div class="head_title">
-                                        <h2>Agregar equipo</h2>
+                                        <h2>Agregar Partido</h2>
                                     </div>
                                     <div class="single_contant_right">
-                                        <form action="agequipo.php" id="formid" method="post" enctype="multipart/form-data">
+                                        <form action="agpartido.php" id="formid" method="post">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="pais" placeholder="Pais" required="">
+                                                        <input type="text" class="form-control" name="lugar" placeholder="Ubicacion" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,30 +99,116 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="ide" placeholder="Abreviatura" required="">
+                                                        <input type="datetime-local" class="form-control" name="feho"  required="">
                                                     </div>
                                                 </div>
 
 
                                             </div>
 
+
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="form-group">
+                                    <label class="col-xs-3 control-label">Seleccione un equipo</label>
+                                      <div class="col-xs-5 selectContainer">
+                                        <select class="form-control" name="ideu" require="">
+
+
+
+<?php
+    $user= "postgres";
+    $password = "root";
+    $dbname = "quiniela";
+    $port = "5432";
+    $host = "localhost";
+
+    $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+
+    $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
+
+    //fin de la conexion -------------------------------------------------------------------------
+
+    $query2 = "SELECT ide,pais FROM equipos";
+    $result2 = pg_query($link, $query2);
+
+    while ( $line = pg_fetch_array($result2)){
+
+        echo "<option value='". $line[ide] ."'> ". $line[pais] ."</option>";
+
+  }
+
+
+    //fin de la conexion a la bd------------------------------------------------------------
+    pg_close($link);
+
+?>
+                                            </select>
+                               </div>
+                            </div>
+
+</div>
+
+<div class="row">
+
+
+  <div class="form-group">
+                                    <label class="col-xs-3 control-label">Seleccione un equipo</label>
+                                      <div class="col-xs-5 selectContainer">
+                                        <select class="form-control" name="ided" require="">
+
+
+
+<?php
+    $user= "postgres";
+    $password = "root";
+    $dbname = "quiniela";
+    $port = "5432";
+    $host = "localhost";
+
+    $con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+
+    $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
+
+    //fin de la conexion -------------------------------------------------------------------------
+
+    $query = "SELECT ide,pais FROM equipos";
+    $result = pg_query($link, $query);
+
+    while ( $line1 = pg_fetch_array($result)){
+
+        echo "<option value='". $line1[ide] ."'> ". $line1[pais] ."</option>";
+
+  }
+
+
+    //fin de la conexion a la bd------------------------------------------------------------
+    pg_close($link);
+
+?>
+                                            </select>
+                               </div>
+                            </div>
+
+</div>
+
+
+
+
+
+
+
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="grupo" placeholder="Grupo" required="">
+                                                        <input type="text" class="form-control" name="fase" placeholder="fase" required="">
                                                     </div>
                                                 </div>
 
                                               </div>
 
-                                              <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="file"  name="bandera"  required="">
-                                                    </div>
-                                                </div>
 
-                                              </div>
 
 
                                             <div class="row">
@@ -200,4 +286,3 @@
 
     </body>
 </html>
- 
