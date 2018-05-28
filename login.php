@@ -106,7 +106,7 @@
     $line = pg_fetch_array($result7);
 
     $query = " SELECT *  
-                FROM admin
+                FROM administrador
                 WHERE email='$email' and pass = '$pass' ";
     $result = pg_query($link, $query) or die('Query failed: ' . pg_last_error());
     $line1 = pg_fetch_array($result);

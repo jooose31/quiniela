@@ -1,3 +1,4 @@
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -58,10 +59,7 @@
 
         <div class="main_figur">
 
-            <div class="preloader">
-                <h2>Cargando</h2>
-                <div class="loaded hexdots-loader">Loading…</div>
-            </div><!-- End off Preloader -->
+            <!-- End off Preloader -->
 
 
 
@@ -75,12 +73,12 @@
 
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#service">Service</a></li>
-                        <li><a href="#team">Our Team</a></li>
-                        <li><a href="#portfolio">Our Work</a></li>
-                        <li><a href="#contactus">Contact</a></li>
+                        <li><a href="inicio.php">Inicio</a></li>
+                        <li><a href="agregare.php">Agregar Equipos</a></li>
+                        <li><a href="agregarp.php">Agregar partidos</a></li>
+                        <li><a href="calendario.php">Calendario</a></li>
+                        <li><a href="grupos.php">Grupos</a></li>
+                        <li><a href="logout.php">Salir</a></li>
                     </ul>
                     <a href="#" class="cd-close-menu">Close<span></span></a>
                 </nav>
@@ -96,19 +94,52 @@
                         <div class="col-md-12 ">
 
                             <div class="main_home text-center wow fadeInUp" data-wow-duration="700ms">
-                                <h1>PROYECTO FINAL CCV <br />
-                                    QUINIELA</h1>
+
+                        <?php
+//conexion bd------------------------------------------------------------------------------------
+$user= "postgres";
+$password = "root";
+$dbname = "quiniela";
+$port = "5432";
+$host = "localhost";
+
+$con = "host=$host port=$port dbname=$dbname user=$user password=$password";
+
+$link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
+
+//fin de la conexion -------------------------------------------------------------------------
+session_start();
+$correoa =$_SESSION['correo'];
+$query = "SELECT nombre
+              FROM administrador
+              WHERE email ='$correoa'";
+    $result = pg_query($link, $query) or die('Query failed: ' . pg_last_error());
+    $line1 = pg_fetch_array($result);
+    $name = $line1['nombre'];
+echo "<h1>BIENVENIDO <br />
+$name</h1>";
+
+//fin de la conexion a la bd------------------------------------------------------------
+pg_close($link);
+
+
+?>
+
+
+                                
+
+
+
                                 <ul class="list-inline">
-                                    <li><a target="_blank" href="#">Ingresar</a></li>
-                                    <li><a target="_blank" href="#"></a></li>
-                                    <li><a target="_blank" href="#">develop</a></li>
-                                    <li><a target="_blank" href="#">support</a></li>
+                                    <li><a  href="agregare.php">Agregar Equipos</a></li>
+                                    <li><a  href="#">Agregar partidos</a></li>
+                                    <li><a  href="#">Calendario</a></li>
+                                    <li><a  href="#">Grupos</a></li>
+                                    <li><a  href="logout.php">Salir</a></li>
                                 </ul>
                             </div>
 
-                            <div class="scrolldown">
-                                <a href="#about"><i class="fa fa-long-arrow-down"></i></a>
-                            </div>
+                            
 
                         </div><!-- End of col-md-12 -->
                     </div><!-- End of row -->

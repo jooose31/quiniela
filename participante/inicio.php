@@ -1,3 +1,8 @@
+<?php 
+session_start();
+$correop =$_SESSION['correo'];
+?>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -80,7 +85,7 @@
                         <li><a href="#service">Service</a></li>
                         <li><a href="#team">Our Team</a></li>
                         <li><a href="#portfolio">Our Work</a></li>
-                        <li><a href="#contactus">Contact</a></li>
+                        <li><a href="logout.php">Salir</a></li>
                     </ul>
                     <a href="#" class="cd-close-menu">Close<span></span></a>
                 </nav>
