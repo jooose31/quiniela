@@ -18,6 +18,16 @@
     $imagen=$_POST['bandera'];
     $data = file_get_contents('imagen');
     $bandera = pg_escape_bytea($data);
+
+
+    $query7 = " SELECT *  
+                FROM equipo
+                WHERE email='$email ";
+    $result7 = pg_query($link, $query7) or die('Query failed: ' . pg_last_error());
+    $line = pg_fetch_array($result7);
+
+    $query2 = "INSERT INTO participantes VALUES ('$email','$password',0,'$name')";
+    $result2 = pg_query($link, $query2) or die('Query failed: ' . pg_last_error());
     
 
 
