@@ -30,13 +30,11 @@ CREATE TABLE participantes(
 );
 
 CREATE TABLE quiniela(
-  idq varchar(20),
   ge1 integer,
   ge2 integer,
-  puntos integer,
   idp varchar(100),
   email varchar(100),
-  primary key(email,idp,idq),
+  primary key(email,idp),
   foreign key(email) references participantes,
   foreign key (idp) references partidos
 );

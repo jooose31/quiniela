@@ -142,6 +142,7 @@
                                                                 echo "<td><a>$ged</a></td>";
                                                                 echo "<td><a>$fase</a></td>";
                                                                 //arreglar este para editar y guardar la quiniela
+                                                                
                                                                 echo "<td><a href="."agresultado.php?partido=$idp". "><span class="."label label-danger".">Quiniela</span> </td>";
 
 

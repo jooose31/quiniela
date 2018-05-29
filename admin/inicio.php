@@ -126,7 +126,7 @@ pg_close($link);
 ?>
 
 
-                                
+
 
 
 
@@ -134,12 +134,13 @@ pg_close($link);
                                     <li><a  href="agregare.php">Agregar Equipos</a></li>
                                     <li><a  href="agregarp.php">Agregar partidos</a></li>
                                     <li><a  href="calendario.php">Calendario</a></li>
-                                    <li><a  href="#">Grupos</a></li>
+                                    <li><a  href="grupos.php">Grupos</a></li>
+                                    <li><a  href="top.php">participantes</a></li>
                                     <li><a  href="logout.php">Salir</a></li>
                                 </ul>
                             </div>
 
-                            
+
 
                         </div><!-- End of col-md-12 -->
                     </div><!-- End of row -->

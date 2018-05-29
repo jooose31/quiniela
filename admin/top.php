@@ -62,9 +62,6 @@
                 <h2>Cargando</h2>
                 <div class="loaded hexdots-loader">Loading…</div>
             </div><!-- End off Preloader -->
-
-    
-
             </div>
 
 
@@ -81,7 +78,7 @@
                             <div class="col-md-12 no-padding wow rollIn">
                                 <div class="main_home_area p-t-9 p-x-10">
                                     <div class="head_title">
-                                        <h2>Calendario</h2>
+                                        <h2>Posiciones</h2>
                                     </div>
 
 
@@ -91,13 +88,11 @@
                           <table class="table">
                             <thead>
                               <tr>
-                                <th><h1>Lugar</h1></th>
-                                <th><h1>Fecha</h1></th>
-                                <th><h1>Local</h1></th>
-                                <th><h1>Vicitante</h1></th>
-                                <th><h1>Goles local</h1></th>
-                                <th><h1>Goles vicitante</h1></th>
-                                <th><h1>Fase</h1></th>
+                                <th><h1>#</h1></th>
+                                <th><h1>nombre</h1></th>
+                                <th><h1>email</h1></th>
+                                <th><h1>puntos</h1></th>
+                                
 
                               </tr>
                             </thead>
@@ -115,43 +110,30 @@
 
                                                             //fin de la conexion -------------------------------------------------------------------------
 
-                                                            $hoy=date('Y-m-d H:i:s');
+                                                            $count=0;
                                                             // session_start();
                                                             // $scorreo=$_SESSION['correo'];
                                                             $query5 = "SELECT *
-                                                            FROM partidos
-                                                            ORDER BY fechahorap";
+                                                            FROM participantes
+                                                            ORDER BY puntos";
                                                             $result5 = pg_query($link, $query5) or die('Query failed: ' . pg_last_error());
 
                                                             while ($line = pg_fetch_array($result5)) {
-                                                              $lugar = $line['lugar'];
-                                                              $fechahora = $line['fechahorap'];
-                                                              $ideu = $line['ideu'];
-                                                              $ided = $line['ided'];
-                                                              $geu = $line['geu'];
-                                                              $ged = $line['ged'];
-                                                              $fase = $line['fase'];
-                                                              $idp = $line['idp'];
+                                                              $nombre = $line['nombre'];
+                                                              $email = $line['email'];
+                                                              $puntos = $line['puntos'];
+                                                              $count++;
+                                                              
 
 
 
                                                                 echo "<tr>";
 
-                                                                echo "<td><a>$lugar</a></td>";
-                                                                echo "<td><a>$fechahora</a></td>";
-                                                                echo "<td><a>$ideu</a></td>";
-                                                                echo "<td><a>$ided</a></td>";
-                                                                echo "<td><a>$geu</a></td>";
-                                                                echo "<td><a>$ged</a></td>";
-                                                                echo "<td><a>$fase</a></td>";
-                                                                //arreglar este para editar y guardar la quiniela
-
-                                                                if ($fechahora>$hoy) {
-                                                                    echo "<td><a href="."agresultado.php?partido=$idp". "><span class="."label label-danger".">predecir</span> </td>";
-                                                                }
-                                                                
-                                                                
-
+                                                                echo "<td><a>$count</a></td>";
+                                                                echo "<td><a>$nombre</a></td>";
+                                                                echo "<td><a>$email</a></td>";
+                                                                echo "<td><a>$puntos</a></td>";
+                                                               
 
                                                                 echo "</tr>";
 

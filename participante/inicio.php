@@ -74,8 +74,7 @@
                 <nav id="main-nav">
                     <ul>
                         <li><a href="inicio.php">Inicio</a></li>
-                        <li><a href="agregare.php">Agregar Equipos</a></li>
-                        <li><a href="agregarp.php">Agregar partidos</a></li>
+                        
                         <li><a href="calendario.php">Calendario</a></li>
                         <li><a href="grupos.php">Grupos</a></li>
                         <li><a href="logout.php">Salir</a></li>
@@ -109,15 +108,16 @@ $link = pg_connect($con) or die("Error en la conexion: ".pg_last_error());
 
 //fin de la conexion -------------------------------------------------------------------------
 session_start();
-$correoa =$_SESSION['correo'];
-$query = "SELECT nombre
-              FROM administrador
-              WHERE email ='$correoa'";
+$correo =$_SESSION['correo'];
+$query = "SELECT nombre, puntos
+              FROM participantes
+              WHERE email ='$correo'";
     $result = pg_query($link, $query) or die('Query failed: ' . pg_last_error());
     $line1 = pg_fetch_array($result);
     $name = $line1['nombre'];
+    $puntos = $line1['puntos'];
 echo "<h1>BIENVENIDO <br />
-$name</h1>";
+$name usted cuenta con $puntos puntos. </h1>";
 
 //fin de la conexion a la bd------------------------------------------------------------
 pg_close($link);
@@ -126,20 +126,18 @@ pg_close($link);
 ?>
 
 
-                                
+
 
 
 
                                 <ul class="list-inline">
-                                    <li><a  href="agregare.php">Agregar Equipos</a></li>
-                                    <li><a  href="agregarp.php">Agregar partidos</a></li>
                                     <li><a  href="calendario.php">Calendario</a></li>
-                                    <li><a  href="#">Grupos</a></li>
+                                    <li><a  href="grupos.php">Grupos</a></li>
                                     <li><a  href="logout.php">Salir</a></li>
                                 </ul>
                             </div>
 
-                            
+
 
                         </div><!-- End of col-md-12 -->
                     </div><!-- End of row -->
